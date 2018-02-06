@@ -31,9 +31,10 @@ int main(){
 	}
 	//While loop to keep the program asking for filename
 	while(1){
-		strcpy(fileName,"");
+		if(fileName == NULL)
+			strcpy(fileName,"");
 		printf("Enter a filename: ");
-		scanf("%s", fileName);
+		scanf("%s",fileName);
 		
 		for(i = 0; i < 10; i++){
 			if(threadUsed[i] == 0){
@@ -45,7 +46,6 @@ int main(){
 		if((status = pthread_create(&threadID[threadNum], NULL, get_file, NULL)) != 0){
 			fprintf(stderr, "Thread create error %d: %s\n", status, strerror(status));
 		}
-		
 	}
 	return 0;
 
