@@ -31,11 +31,24 @@ int main(){
 	}
 	//While loop to keep the program asking for filename
 	while(1){
-		if(fileName == NULL)
-			strcpy(fileName,"");
-		printf("Enter a filename: ");
-		scanf("%s",fileName);
-		
+        printf("Enter a filename: ");
+		//scanf("%s",fileName);
+        fgets(fileName, 32, stdin);
+        
+        if(fileName[0] == '\n')
+        {
+            printf("Blank file name entered.\n");
+//            strcpy(fileName,"");
+        }
+        
+        /* Check for trailing newline. */
+        int len = strlen(fileName);
+        if (fileName[len - 1] == '\n')
+        {
+            printf("Remove newline.\n");
+            fileName[len - 1] = '\0';
+        }
+        
 		for(i = 0; i < 10; i++){
 			if(threadUsed[i] == 0){
 				threadNum = i;
